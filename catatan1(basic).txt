@@ -15,18 +15,16 @@ this is to make command more simple in terminal
 
         #######===========#######
         ###==== Catatan 2 ====###
-        # DATABASE di sqlite
+        # CREATE DATABASE, CREATE TABLE
         #######===========#######
 
 database in sqlite made of table fill with rows and column 
 access using cmd with command
  > C:\Users\Rizky>sqlite3 (database_name.db)
-If theres no file with that name, it will make a new file, check in command
- > .databases
+If theres no file with that name, it will make a new file
 
 make a new table with VARCHAR type, data type must input in the beginning
  > CREATE TABLE table_name(rowid, name VARCHAR(25), email VARCHAR(35));
- > akses .tables to see table
 use this to make unique data type
  > PRIMARY KEY
 want data prohibited to insert if empty
@@ -37,11 +35,12 @@ data is just number
 
         #######===========#######
         ###==== Catatan 3 ====###
-        # Edit Table
+        # INSERT, UPDATE, DELETE
         #######===========#######
 
 insert into untuk memasukkan data ke table
- > INSERT INTO table_name(rowid, name, email) VALUES(1, 'alpha', 'alpha@skdj.osdf');
+ > INSERT INTO table_name(rowid, name, email) VALUES(1, 'alpha',
+   'alpha@skdj.osdf');
 
 update untuk mengubah data yang ada
  > UPDATE table_name SET name='omega' WHERE rowid = 1;
@@ -49,23 +48,17 @@ update untuk mengubah data yang ada
 delete data yang ada
  > DELETE FROM table_name WHERE rowid = 2;
 
-print data dengan
- > SELECT * FROM table_name;
-
-count column data
- > SELECT COUNT(column_name) FROM table_name;
-
 Delete table with command
 > DROP TABLE table_name;
-
-exit sqlite3 with command
-> .quit
 
 
         #######===========#######
         ###==== Catatan 4 ====###
-        # SELECT command
+        # SELECT, WHERE, LIKE
         #######===========#######
+
+print data dengan
+ > SELECT * FROM table_name;
 
 select for specific column
  > SELECT column_name,column_name FROM table_name;
@@ -75,15 +68,24 @@ using WHERE for conditional
  > other operator can be used like =, >=, <=
 
 using LIKE for more detail conditional
- > SELECT column_name/* FROM table_name WHERE column_name LIKE "&keyword&"
+ > SELECT column_name/* FROM table_name WHERE column_name LIKE
+   "&keyword&"
  > & = is to determined if theres a character before or after keyword
    exp = "%keyword", "keyword&", "%keyword%".
- > _ = is to determined if theres single character before or after keyword
+ > _ = is to determined if theres single character before or after 
+   keyword
    exp = "_keyword", "keyword__", "___keyword___"
 Another Wildcard character 
  > [abc] = represent single character inside
  > [^abc] = represent single character not inside
  > [a-z] = represent single character from inside
+
+
+        #######===========#######
+        ###==== Catatan 5 ====###
+        # LIMIT, ORDER, DISTINCT
+        #######===========#######
+
 
 show only specific row using LIMIT
  > SELECT column_name/* FROM table_name LIMIT 2;
@@ -93,7 +95,8 @@ to make it to page, add OFFSET
 order table using ORDER BY
  > SELECT column_name/* FROM table_name ORDER BY column_name;
 add another column_name to double order
- > SELECT column_name/* FROM table_name ORDER BY column_name1,column_name2;
+ > SELECT column_name/* FROM table_name ORDER BY column_name1,
+   column_name2;
 use DESC to make it descending
  > SELECT column_name/* FROM table_name ORDER BY column_name DESC;
 
@@ -101,23 +104,29 @@ select with only difference value
  > SELECT DISTINCT column_name/* FROM table_name;
 
         #######===========#######
-        ###==== Catatan 5 ====###
-        # AND, OR, NOT, MIN, MAX, COUNT, AVG, SUM
+        ###==== Catatan 6 ====###
+        # AND, OR, NOT
         #######===========#######
 
-this used to determine spesific conditional using WHERE command
 use AND if has to be TRUE at all condition
  > SELECT * FROM table_name
    WHERE column_name="data_in_table" AND column_name2="data_in_table";
 use OR if has to be TRUE at any condition
  > SELECT * FROM table_name
-   WHERE column_name="data_in_table" OR column_name1="other_data_in_table";
+   WHERE column_name="data_in_table" OR column_name1=
+   "other_data_in_table";
 use NOT if want to exclude
  > SELECT * FROM table_name
    WHERE NOT column_name="data_in_table"
 all of it can be combined
  > SELECT * FROM Customers
    WHERE Country='Germany' AND (City='Berlin' OR City='München');
+
+
+        #######===========#######
+        ###==== Catatan 7 ====###
+        # MIN, MAX, COUNT, AVG, SUM
+        #######===========######
 
 MIN and MAX
  > SELECT MIN(column_name) FROM table_name;
@@ -131,7 +140,7 @@ SUM to add all INT value
 
 
         #######===========#######
-        ###==== Catatan 6 ====###
+        ###==== Catatan 8 ====###
         # SELECT TOP, IN, BETWEEN, AS, JOIN
         #######===========#######
 
@@ -164,4 +173,19 @@ INNER JOIN to join same column_type
  > SELECT Customers.CustomerName, Orders.OrderDate
    FROM Customers INNER JOIN Orders
    ON Customers.CustomerID = Orders.CustomerID;
-LEFT JOIN for full table in left, RIGHT JOIN for table in right, FULL JOIN for join all table
+LEFT JOIN for full table in left
+RIGHT JOIN for full table in right,
+FULL JOIN for join all table
+
+
+
+        #######===========#######
+        ###==== LIST CMD =====###
+        # command start with .
+        #######===========#######
+
+.database   = check where database at
+.open       = open database
+.quit       = quit from sql3
+.schema     = table info (column_type)
+.table      = list table in database
