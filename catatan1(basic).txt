@@ -15,7 +15,7 @@ this is to make command more simple in terminal
 
         #######===========#######
         ###==== Catatan 2 ====###
-        # CREATE DATABASE, CREATE TABLE
+        # CREATE DATABASE, CREATE, RENAME
         #######===========#######
 
 database in sqlite made of table fill with rows and column 
@@ -29,9 +29,11 @@ use this to make unique data type
  > PRIMARY KEY
 want data prohibited to insert if empty
  > NOT NULL
-data is just number
+data set to just number
  > INT
 
+Rename table
+ > ALTER TABLE table_name RENAME TO new_table_name
 
         #######===========#######
         ###==== Catatan 3 ====###
@@ -41,9 +43,15 @@ data is just number
 insert into untuk memasukkan data ke table
  > INSERT INTO table_name(rowid, name, email) VALUES(1, 'alpha',
    'alpha@skdj.osdf');
+insert more than one value
+ > INSERT INTO table_name VALUES
+   (1, "name1", "email1"),
+   (2, "name2", "email2");
 
 update untuk mengubah data yang ada
  > UPDATE table_name SET name='omega' WHERE rowid = 1;
+update more than one value
+ > UPDATE table_name SET name='omega', age='27' WHERE rowid = 1;
 
 delete data yang ada
  > DELETE FROM table_name WHERE rowid = 2;
@@ -65,7 +73,7 @@ select for specific column
 
 using WHERE for conditional
  > SELECT column_name/* FROM table_name WHERE column_name > 30;
- > other operator can be used like =, >=, <=
+other WHERE operator =, <>, >=, <=
 
 using LIKE for more detail conditional
  > SELECT column_name/* FROM table_name WHERE column_name LIKE
@@ -100,7 +108,7 @@ add another column_name to double order
 use DESC to make it descending
  > SELECT column_name/* FROM table_name ORDER BY column_name DESC;
 
-select with only difference value
+show only difference value
  > SELECT DISTINCT column_name/* FROM table_name;
 
         #######===========#######
@@ -125,7 +133,7 @@ all of it can be combined
 
         #######===========#######
         ###==== Catatan 7 ====###
-        # MIN, MAX, COUNT, AVG, SUM
+        # AGGREGAT
         #######===========######
 
 MIN and MAX
@@ -167,8 +175,7 @@ AS for Aliases but only in that query
 
 JOIN to merge two table into one, add ON in equivalent
 INNER JOIN to join same column_type
- > SELECT *
-   FROM table_name INNER JOIN table_name1
+ > SELECT * FROM table_name INNER JOIN table_name1
    ON table_name.column_name = table_name1.column_name1
  > SELECT Customers.CustomerName, Orders.OrderDate
    FROM Customers INNER JOIN Orders
@@ -178,10 +185,48 @@ RIGHT JOIN for full table in right,
 FULL JOIN for join all table
 
 
+        #######===========#######
+        ###==== Catatan 9 ====###
+        # UNION, GROUP BY, HAVING
+        #######===========#######
+
+combine same column from two table use UNION
+use UNION ALL for undistinct value
+ > SELECT column_name1 FROM table_name1
+   UNION
+   SELECT column_name2 FROM table_name2
+
+GROUP BY to classify column, usually use aggregat
+ > SELECT COUNT(column_name) FROM table_name
+   GROUP BY column_name;
+ > SELECT Shippers.ShipperName, COUNT(Orders.OrderID)
+   AS NumberOfOrders FROM Orders LEFT JOIN Shippers ON
+   Orders.ShipperID = Shippers.ShipperID GROUP BY ShipperName;
+
+HAVING same like WHERE but it used aggregat command
+ > SELECT COUNT(CustomerID), Country FROM Customers 
+   GROUP BY Country HAVING COUNT(CustomerID) > 5
+   ORDER BY COUNT(CustomerID) DESC;
+ > SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders
+   FROM (Orders INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID)
+   GROUP BY LastName HAVING COUNT(Orders.OrderID) > 10;
+   
+
+        #######===========#######
+        ###==== Catatan 10 ===###
+        # EXISTS
+        #######===========#######
+
+if value are in column
+ > SELECT column_name FROM table_name WHERE EXISTS
+   (SELECT column_name FROM table_name WHERE condition);
+ > SELECT SupplierName FROM Suppliers WHERE EXISTS
+   (SELECT ProductName FROM Products WHERE Products.SupplierID
+   = Suppliers.supplierID AND Price = 22);
+
 
         #######===========#######
         ###==== LIST CMD =====###
-        # command start with .
         #######===========#######
 
 .database   = check where database at
