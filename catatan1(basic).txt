@@ -1,0 +1,167 @@
+        #######===========#######
+        ###==== Catatan 1 ====###
+        # install sqlite3
+        #######===========#######
+
+# Cara menginstall sqlite
+Menginstall sqlite di windows dengan mendownload sqlite
+yang bagian 'Precompiled Binaries for Windows' di web sqlite.
+> Pindah ke sqlite di path C:\ buat folder nama sqlite
+
+view advanced system, open environment variables
+> add new path in system variables c:\sqlite
+this is to make command more simple in terminal
+
+
+        #######===========#######
+        ###==== Catatan 2 ====###
+        # DATABASE di sqlite
+        #######===========#######
+
+database in sqlite made of table fill with rows and column 
+access using cmd with command
+ > C:\Users\Rizky>sqlite3 (database_name.db)
+If theres no file with that name, it will make a new file, check in command
+ > .databases
+
+make a new table with VARCHAR type, data type must input in the beginning
+ > CREATE TABLE table_name(rowid, name VARCHAR(25), email VARCHAR(35));
+ > akses .tables to see table
+use this to make unique data type
+ > PRIMARY KEY
+want data prohibited to insert if empty
+ > NOT NULL
+data is just number
+ > INT
+
+
+        #######===========#######
+        ###==== Catatan 3 ====###
+        # Edit Table
+        #######===========#######
+
+insert into untuk memasukkan data ke table
+ > INSERT INTO table_name(rowid, name, email) VALUES(1, 'alpha', 'alpha@skdj.osdf');
+
+update untuk mengubah data yang ada
+ > UPDATE table_name SET name='omega' WHERE rowid = 1;
+
+delete data yang ada
+ > DELETE FROM table_name WHERE rowid = 2;
+
+print data dengan
+ > SELECT * FROM table_name;
+
+count column data
+ > SELECT COUNT(column_name) FROM table_name;
+
+Delete table with command
+> DROP TABLE table_name;
+
+exit sqlite3 with command
+> .quit
+
+
+        #######===========#######
+        ###==== Catatan 4 ====###
+        # SELECT command
+        #######===========#######
+
+select for specific column
+ > SELECT column_name,column_name FROM table_name;
+
+using WHERE for conditional
+ > SELECT column_name/* FROM table_name WHERE column_name > 30;
+ > other operator can be used like =, >=, <=
+
+using LIKE for more detail conditional
+ > SELECT column_name/* FROM table_name WHERE column_name LIKE "&keyword&"
+ > & = is to determined if theres a character before or after keyword
+   exp = "%keyword", "keyword&", "%keyword%".
+ > _ = is to determined if theres single character before or after keyword
+   exp = "_keyword", "keyword__", "___keyword___"
+Another Wildcard character 
+ > [abc] = represent single character inside
+ > [^abc] = represent single character not inside
+ > [a-z] = represent single character from inside
+
+show only specific row using LIMIT
+ > SELECT column_name/* FROM table_name LIMIT 2;
+to make it to page, add OFFSET
+ > SELECT column_name/* FROM table_name LIMIT 2 OFFSET 2;
+
+order table using ORDER BY
+ > SELECT column_name/* FROM table_name ORDER BY column_name;
+add another column_name to double order
+ > SELECT column_name/* FROM table_name ORDER BY column_name1,column_name2;
+use DESC to make it descending
+ > SELECT column_name/* FROM table_name ORDER BY column_name DESC;
+
+select with only difference value
+ > SELECT DISTINCT column_name/* FROM table_name;
+
+        #######===========#######
+        ###==== Catatan 5 ====###
+        # AND, OR, NOT, MIN, MAX, COUNT, AVG, SUM
+        #######===========#######
+
+this used to determine spesific conditional using WHERE command
+use AND if has to be TRUE at all condition
+ > SELECT * FROM table_name
+   WHERE column_name="data_in_table" AND column_name2="data_in_table";
+use OR if has to be TRUE at any condition
+ > SELECT * FROM table_name
+   WHERE column_name="data_in_table" OR column_name1="other_data_in_table";
+use NOT if want to exclude
+ > SELECT * FROM table_name
+   WHERE NOT column_name="data_in_table"
+all of it can be combined
+ > SELECT * FROM Customers
+   WHERE Country='Germany' AND (City='Berlin' OR City='München');
+
+MIN and MAX
+ > SELECT MIN(column_name) FROM table_name;
+ > SELECT MAX(column_name) FROM table_name;
+COUNT to count rows
+ > SELECT COUNT(column_name) FROM table_name;
+AVG to count average INT value
+ > SELECT AVG(column_name) FROM table_name;
+SUM to add all INT value
+ > SELECT SUM(column_name) FROM table_name;
+
+
+        #######===========#######
+        ###==== Catatan 6 ====###
+        # SELECT TOP, IN, BETWEEN, AS, JOIN
+        #######===========#######
+
+to select top of table, it can be combined with WHERE
+ > SELECT TOP 3 * FROM table_name:
+ in MySQL
+ > SELET * FROM table_name LIMIT 3;
+
+IN is shorthand for OR command
+ > SELECT * FROM table_name
+   WHERE column_name IN (column_value1, column_value2)
+
+BETWEEN to select in range
+ > SELECT * FROM table_name
+   WHERE column_name BETWEEN 10 AND 30;
+ > SELECT * FROM table_name
+   WHERE column_name BETWEEN "Alpha" AND "Zeta";
+ > SELECT * FROM table_name
+   WHERE column_name BETWEEN '1996-07-01' AND '1996-07-31';
+
+AS for Aliases but only in that query
+ > SELECT column_name AS new1;
+ > SELECT a.column_name FROM table_name AS a;
+
+JOIN to merge two table into one, add ON in equivalent
+INNER JOIN to join same column_type
+ > SELECT *
+   FROM table_name INNER JOIN table_name1
+   ON table_name.column_name = table_name1.column_name1
+ > SELECT Customers.CustomerName, Orders.OrderDate
+   FROM Customers INNER JOIN Orders
+   ON Customers.CustomerID = Orders.CustomerID;
+LEFT JOIN for full table in left, RIGHT JOIN for table in right, FULL JOIN for join all table
