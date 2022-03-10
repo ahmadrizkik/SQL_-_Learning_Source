@@ -35,6 +35,7 @@ data set to just number
 Rename table
  > ALTER TABLE table_name RENAME TO new_table_name
 
+
         #######===========#######
         ###==== Catatan 3 ====###
         # INSERT, UPDATE, DELETE
@@ -56,25 +57,83 @@ update more than one value
 delete data yang ada
  > DELETE FROM table_name WHERE rowid = 2;
 
-Delete table with command
-> DROP TABLE table_name;
+Delete table
+ > DROP TABLE table_name;
 
 
         #######===========#######
         ###==== Catatan 4 ====###
-        # SELECT, WHERE, LIKE
+        # SELECT
         #######===========#######
 
-print data dengan
+### SELECT
+#######===========#######
+return data
  > SELECT * FROM table_name;
 
-select for specific column
+return specific column
  > SELECT column_name,column_name FROM table_name;
 
-using WHERE for conditional
+### DISTINCT
+#######===========#######
+show only difference value
+ > SELECT DISTINCT column_name/* FROM table_name;
+
+### AGGREGAT
+#######===========#######
+MIN and MAX
+ > SELECT MIN(column_name) FROM table_name;
+ > SELECT MAX(column_name) FROM table_name;
+COUNT to count rows
+ > SELECT COUNT(column_name) FROM table_name;
+AVG to count average INT value
+ > SELECT AVG(column_name) FROM table_name;
+SUM to add all INT value
+ > SELECT SUM(column_name) FROM table_name;
+
+### TOP
+#######===========#######
+to select top of table, it can be combined with WHERE
+ > SELECT TOP 3 * FROM table_name:
+ in MySQL
+ > SELET * FROM table_name LIMIT 3;
+
+        #######===========#######
+        ###==== Catatan 5 ====###
+        # FROM
+        #######===========#######
+
+### LIMIT
+#######===========#######
+show only specific row using LIMIT
+ > SELECT column_name/* FROM table_name LIMIT 2;
+to make it to page, add OFFSET
+ > SELECT column_name/* FROM table_name LIMIT 2 OFFSET 2;
+
+### JOIN
+#######===========#######
+JOIN to merge two table into one, add ON in equivalent
+INNER JOIN to join same column_type
+ > SELECT * FROM table_name INNER JOIN table_name1
+   ON table_name.column_name = table_name1.column_name1
+ > SELECT Customers.CustomerName, Orders.OrderDate
+   FROM Customers INNER JOIN Orders
+   ON Customers.CustomerID = Orders.CustomerID;
+LEFT JOIN for full table in left
+RIGHT JOIN for full table in right,
+FULL JOIN for join all table
+
+        #######===========#######
+        ###==== Catatan 6 ====###
+        # WHERE
+        #######===========#######
+
+using WHERE for conditional return
  > SELECT column_name/* FROM table_name WHERE column_name > 30;
 other WHERE operator =, <>, >=, <=
 
+### LIKE
+#######===========#######
 using LIKE for more detail conditional
  > SELECT column_name/* FROM table_name WHERE column_name LIKE
    "&keyword&"
@@ -88,18 +147,8 @@ Another Wildcard character
  > [^abc] = represent single character not inside
  > [a-z] = represent single character from inside
 
-
-        #######===========#######
-        ###==== Catatan 5 ====###
-        # LIMIT, ORDER, DISTINCT
-        #######===========#######
-
-
-show only specific row using LIMIT
- > SELECT column_name/* FROM table_name LIMIT 2;
-to make it to page, add OFFSET
- > SELECT column_name/* FROM table_name LIMIT 2 OFFSET 2;
-
+### ORDER BY
+#######===========#######
 order table using ORDER BY
  > SELECT column_name/* FROM table_name ORDER BY column_name;
 add another column_name to double order
@@ -108,14 +157,8 @@ add another column_name to double order
 use DESC to make it descending
  > SELECT column_name/* FROM table_name ORDER BY column_name DESC;
 
-show only difference value
- > SELECT DISTINCT column_name/* FROM table_name;
-
-        #######===========#######
-        ###==== Catatan 6 ====###
-        # AND, OR, NOT
-        #######===========#######
-
+### AND, OR, NOT
+#######===========#######
 use AND if has to be TRUE at all condition
  > SELECT * FROM table_name
    WHERE column_name="data_in_table" AND column_name2="data_in_table";
@@ -130,37 +173,14 @@ all of it can be combined
  > SELECT * FROM Customers
    WHERE Country='Germany' AND (City='Berlin' OR City='München');
 
-
-        #######===========#######
-        ###==== Catatan 7 ====###
-        # AGGREGAT
-        #######===========######
-
-MIN and MAX
- > SELECT MIN(column_name) FROM table_name;
- > SELECT MAX(column_name) FROM table_name;
-COUNT to count rows
- > SELECT COUNT(column_name) FROM table_name;
-AVG to count average INT value
- > SELECT AVG(column_name) FROM table_name;
-SUM to add all INT value
- > SELECT SUM(column_name) FROM table_name;
-
-
-        #######===========#######
-        ###==== Catatan 8 ====###
-        # SELECT TOP, IN, BETWEEN, AS, JOIN
-        #######===========#######
-
-to select top of table, it can be combined with WHERE
- > SELECT TOP 3 * FROM table_name:
- in MySQL
- > SELET * FROM table_name LIMIT 3;
-
+### IN
+#######===========#######
 IN is shorthand for OR command
  > SELECT * FROM table_name
    WHERE column_name IN (column_value1, column_value2)
 
+### BETWEEN
+#######===========#######
 BETWEEN to select in range
  > SELECT * FROM table_name
    WHERE column_name BETWEEN 10 AND 30;
@@ -169,33 +189,8 @@ BETWEEN to select in range
  > SELECT * FROM table_name
    WHERE column_name BETWEEN '1996-07-01' AND '1996-07-31';
 
-AS for Aliases but only in that query
- > SELECT column_name AS new1;
- > SELECT a.column_name FROM table_name AS a;
-
-JOIN to merge two table into one, add ON in equivalent
-INNER JOIN to join same column_type
- > SELECT * FROM table_name INNER JOIN table_name1
-   ON table_name.column_name = table_name1.column_name1
- > SELECT Customers.CustomerName, Orders.OrderDate
-   FROM Customers INNER JOIN Orders
-   ON Customers.CustomerID = Orders.CustomerID;
-LEFT JOIN for full table in left
-RIGHT JOIN for full table in right,
-FULL JOIN for join all table
-
-
-        #######===========#######
-        ###==== Catatan 9 ====###
-        # UNION, GROUP BY, HAVING
-        #######===========#######
-
-combine same column from two table use UNION
-use UNION ALL for undistinct value
- > SELECT column_name1 FROM table_name1
-   UNION
-   SELECT column_name2 FROM table_name2
-
+### GROUP BY
+#######===========#######
 GROUP BY to classify column, usually use aggregat
  > SELECT COUNT(column_name) FROM table_name
    GROUP BY column_name;
@@ -203,6 +198,8 @@ GROUP BY to classify column, usually use aggregat
    AS NumberOfOrders FROM Orders LEFT JOIN Shippers ON
    Orders.ShipperID = Shippers.ShipperID GROUP BY ShipperName;
 
+### HAVING
+#######===========#######
 HAVING same like WHERE but it used aggregat command
  > SELECT COUNT(CustomerID), Country FROM Customers 
    GROUP BY Country HAVING COUNT(CustomerID) > 5
@@ -210,19 +207,39 @@ HAVING same like WHERE but it used aggregat command
  > SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders
    FROM (Orders INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID)
    GROUP BY LastName HAVING COUNT(Orders.OrderID) > 10;
-   
 
-        #######===========#######
-        ###==== Catatan 10 ===###
-        # EXISTS
-        #######===========#######
-
-if value are in column
+### EXIST
+#######===========#######
+EXISTS to check if value are in column
  > SELECT column_name FROM table_name WHERE EXISTS
    (SELECT column_name FROM table_name WHERE condition);
  > SELECT SupplierName FROM Suppliers WHERE EXISTS
    (SELECT ProductName FROM Products WHERE Products.SupplierID
    = Suppliers.supplierID AND Price = 22);
+
+### ANY, ALL
+#######===========#######
+ANY to compare column and return TRUE if in a condition
+ > SELECT column_name FROM table_name WHERE column_name =
+   ANY (SELECT column_name FROM table_name WHERE condition);
+ > SELECT ProductName FROM Products WHERE ProductID = ANY
+   (SELECT ProductID FROM OrderDetails WHERE Quantity = 10);
+ALL to compare column and RETURN TRUE if all in a condition
+
+        #######===========#######
+        ###==== Catatan 7 ====###
+        # AS, UNION
+        #######===========#######
+
+AS for Aliases but only in that query
+ > SELECT column_name AS new1;
+ > SELECT a.column_name FROM table_name AS a;
+
+UNION combine same column from two table
+use UNION ALL for undistinct value
+ > SELECT column_name1 FROM table_name1
+   UNION
+   SELECT column_name2 FROM table_name2
 
 
         #######===========#######
