@@ -49,12 +49,12 @@ insert more than one value
    (1, "name1", "email1"),
    (2, "name2", "email2");
 
-update untuk mengubah data yang ada
+update data
  > UPDATE table_name SET name='omega' WHERE rowid = 1;
 update more than one value
  > UPDATE table_name SET name='omega', age='27' WHERE rowid = 1;
 
-delete data yang ada
+delete column_table
  > DELETE FROM table_name WHERE rowid = 2;
 
 Delete table
