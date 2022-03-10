@@ -1,0 +1,13 @@
+        #######===========#######
+        ###==== Catatan 1 ====###
+        # SOURCE, SHOW DATABASES, USE
+        #######===========#######
+
+SOURCE to load file 
+ > SOURCE c:\file_name.sql
+
+SHOW DATABASES to load all DATABASES
+ > SHOW DATABASES;
+
+USE to load databases
+ > USE databases_name;
