@@ -12,6 +12,8 @@ want data prohibited to insert if empty
  > NOT NULL
 data set to just number
  > INT
+auto fill with number without need to insert
+ > AUTO_INCREMENT
 
 Rename table
  > ALTER TABLE table_name RENAME TO new_table_name

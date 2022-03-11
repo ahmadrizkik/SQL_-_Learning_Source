@@ -6,16 +6,19 @@
 open in cmd
  > mysql -u root -p
 
-SOURCE to load file 
+SOURCE to load database 
  > SOURCE c:\file_name.sql
+
+CREATE DATABASE to create new database
+ > CREATE DATABASE new_database_name;
 
 SHOW DATABASES to load all DATABASES
  > SHOW DATABASES;
+SHOW TABLES to load all table in databases
+ > SHOW TABLES;
 
 USE to load databases
  > USE databases_name;
 
 DESCRIBE to see table schema
  > DESCRIBE table_name;
- 
-CHANGE TABLE
