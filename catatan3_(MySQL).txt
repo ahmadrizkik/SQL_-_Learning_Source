@@ -14,6 +14,11 @@ SHOW DATABASES to load all DATABASES
 
 USE to load databases
  > USE databases_name;
+<<<<<<< HEAD
 
 DESCRIBE to see table schema
  > DESCRIBE table_name;
+=======
+ 
+DELETE TABLE
+>>>>>>> 0bb32538284f77ed03205eefe0a02cd91126ff9f
