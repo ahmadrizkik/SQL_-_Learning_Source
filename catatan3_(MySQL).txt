@@ -17,5 +17,3 @@ USE to load databases
 
 DESCRIBE to see table schema
  > DESCRIBE table_name;
- 
-CHANGE TABLE
