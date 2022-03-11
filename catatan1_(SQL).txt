@@ -1,47 +1,63 @@
 
         #######===========#######
         ###==== Catatan 1 ====###
-        # CREATE TABLE, RENAME
+        # CREATE TABLE
         #######===========#######
 
-make a new table with VARCHAR type, data type must input in the beginning
- > CREATE TABLE table_name(rowid, name VARCHAR(25), email VARCHAR(35));
-use this to make unique data type
- > PRIMARY KEY
-want data prohibited to insert if empty
- > NOT NULL
-data set to just number
- > INT
-auto fill with number without need to insert
- > AUTO_INCREMENT
+new table
+ => CREATE TABLE table_name(rowid, name VARCHAR(25), email VARCHAR(35));
 
-Rename table
- > ALTER TABLE table_name RENAME TO new_table_name
+# data type
+set column into key
+ => PRIMARY KEY
+want data prohibited to insert if empty
+ => NOT NULL
+data set to just number
+ => INT
+data set to just variable
+ => VARCHAR
+auto fill with number without need to insert
+ => AUTO_INCREMENT
 
 
         #######===========#######
         ###==== Catatan 2 ====###
-        # INSERT, UPDATE, DELETE
+        # INSERT, UPDATE, DELETE, ALTER
         #######===========#######
 
-insert into untuk memasukkan data ke table
- > INSERT INTO table_name(rowid, name, email) VALUES(1, 'alpha',
-   'alpha@skdj.osdf');
-insert more than one value
- > INSERT INTO table_name VALUES
-   (1, "name1", "email1"),
-   (2, "name2", "email2");
+add rows
+ => INSERT INTO table_name(rowid, name, email) VALUES(1, 'alpha',
+    'alpha@skdj.osdf');
+    /////////////////////////
+    add more than one rows
+     => INSERT INTO table_name VALUES
+        (1, "name1", "email1"),
+        (2, "name2", "email2");
+add column
+ => ALTER TABLE table_name ADD new_column_name;
 
 update data
- > UPDATE table_name SET name='omega' WHERE rowid = 1;
-update more than one value
- > UPDATE table_name SET name='omega', age='27' WHERE rowid = 1;
+ => UPDATE table_name SET name='omega' WHERE rowid = 1;
+    /////////////////////////
+    update more than one value
+    => UPDATE table_name SET name='omega', age='27' WHERE rowid = 1;
 
-delete column_table
- > DELETE FROM table_name WHERE rowid = 2;
+delete rows
+ => DELETE FROM table_name WHERE rowid = 2;
+delete column
+ => ALTER TABLE table_name DROP column_name;
+delete table
+ => DROP TABLE table_name;
+delete database
+ => DROP DATABASE databases_name;
 
-Delete table
- > DROP TABLE table_name;
+rename table
+ => ALTER TABLE table_name RENAME TO new_table_name;
+rename column
+ => ALTER TABLE table_name RENAME COLUMN column_name TO new_column_name;
+
+
+
 
 
         #######===========#######
@@ -54,40 +70,32 @@ Delete table
 #######===========#######
 
 return data
- > SELECT * FROM table_name;
+ => SELECT * FROM table_name;
 
 return specific column
- > SELECT column_name,column_name FROM table_name;
+ => SELECT column_name,column_name FROM table_name;
 
 #######===========#######
 ### DISTINCT
 #######===========#######
 
 show only difference value
- > SELECT DISTINCT column_name/* FROM table_name;
+ => SELECT DISTINCT column_name/* FROM table_name;
 
 #######===========#######
 ### AGGREGAT
 #######===========#######
 
 MIN and MAX
- > SELECT MIN(column_name) FROM table_name;
- > SELECT MAX(column_name) FROM table_name;
+ => SELECT MIN(column_name) FROM table_name;
+ => SELECT MAX(column_name) FROM table_name;
 COUNT to count rows, every row values by 1
- > SELECT COUNT(column_name) FROM table_name;
+ => SELECT COUNT(column_name) FROM table_name;
 AVG to count average INT value
- > SELECT AVG(column_name) FROM table_name;
+ => SELECT AVG(column_name) FROM table_name;
 SUM to add all INT value
- > SELECT SUM(column_name) FROM table_name;
+ => SELECT SUM(column_name) FROM table_name;
 
-#######===========#######
-### TOP
-#######===========#######
-
-to select top of table, it can be combined with WHERE
- > SELECT TOP 3 * FROM table_name:
- in MySQL
- > SELET * FROM table_name LIMIT 3;
 
         #######===========#######
         ###==== Catatan 4 ====###
@@ -99,24 +107,31 @@ to select top of table, it can be combined with WHERE
 #######===========#######
 
 show only specific row using LIMIT
- > SELECT column_name/* FROM table_name LIMIT 2;
+ => SELECT column_name/* FROM table_name
+    LIMIT 2;
 to make it to page, add OFFSET
- > SELECT column_name/* FROM table_name LIMIT 2 OFFSET 2;
+ => SELECT column_name/* FROM table_name
+    LIMIT 2 OFFSET 2;
 
 #######===========#######
 ### JOIN
 #######===========#######
 
 JOIN to merge two table into one, add ON in equivalent
-INNER JOIN to join same column_type
- > SELECT * FROM table_name INNER JOIN table_name1
-   ON table_name.column_name = table_name1.column_name1
- > SELECT Customers.CustomerName, Orders.OrderDate
-   FROM Customers INNER JOIN Orders
-   ON Customers.CustomerID = Orders.CustomerID;
 LEFT JOIN for full table in left
-RIGHT JOIN for full table in right,
-FULL JOIN for join all table
+ => SELECT * FROM table_name
+    LEFT JOIN table_name1 ON table_name.column_name = table_name1.column_name1
+RIGHT JOIN for full table in right
+ => SELECT * FROM table_name
+    RIGHT JOIN table_name1 ON table_name.column_name = table_name1.column_name1
+CROSS JOIN for join all table
+ => SELECT * FROM table_name
+    CROSS JOIN table_name1 ON table_name.column_name = table_name1.column_name1
+INNER JOIN to join same column_value
+ => SELECT * FROM table_name
+    INNER JOIN table_name1 ON table_name.column_name = table_name1.column_name1
+ => SELECT Customers.CustomerName, Orders.OrderDate FROM Customers
+    INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
 
         #######===========#######
         ###==== Catatan 5====###
@@ -124,24 +139,25 @@ FULL JOIN for join all table
         #######===========#######
 
 using WHERE for conditional return
- > SELECT column_name/* FROM table_name WHERE column_name > 30;
 other WHERE operator =, <>, >=, <=
+ => SELECT column_name/* FROM table_name WHERE column_name > 30;
 
 #######===========#######
 ### LIKE
 #######===========#######
 
 using LIKE for more detail conditional
- > SELECT column_name/* FROM table_name WHERE column_name LIKE
-   "&keyword&"
- > &   = is to determined if theres a character before or after keyword
-   exp = "%keyword", "keyword&", "%keyword%".
- > _   = is to determined if theres single character before or after keyword
-   exp = "_keyword", "keyword__", "___keyword___"
-Another Wildcard character 
- > [abc] = represent single character inside
- > [^abc] = represent single character not inside
- > [a-z] = represent single character from inside
+ => SELECT column_name/* FROM table_name WHERE column_name LIKE
+    "&keyword&"
+    /////////////////////////
+    &     = is to determined if theres a character before or after keyword
+      exa = "%keyword", "keyword&", "%keyword%".
+    _     = is to determined if theres single character before or after keyword
+      exa = "_keyword", "keyword__", "___keyword___"
+    Another Wildcard character 
+    => [abc] = represent single character inside
+    => [^abc] = represent single character not inside
+    => [a-z] = represent single character from inside
 
 
 #######===========#######
@@ -149,104 +165,117 @@ Another Wildcard character
 #######===========#######
 
 IS NULL for select empty rows
- > SELECT * FROM Customers WHERE Address IS NULL;
+ => SELECT * FROM Customers WHERE Address
+    IS NULL;
 IS NOT NULL for select non empty rows
- > SELECT * FROM Customers WHERE Address IS NULL;
+ => SELECT * FROM Customers WHERE Address
+    IS NOT NULL;
 
 #######===========#######
 ### ORDER BY
 #######===========#######
 
 order table using ORDER BY
- > SELECT column_name/* FROM table_name ORDER BY column_name;
+ => SELECT column_name/* FROM table_name
+    ORDER BY column_name;
+
 add another column_name to double order
- > SELECT column_name/* FROM table_name ORDER BY column_name1,
-   column_name2;
+ => SELECT column_name/* FROM table_name
+    ORDER BY column_name1,column_name2;
+
 use DESC to make it descending
- > SELECT column_name/* FROM table_name ORDER BY column_name DESC;
+ => SELECT column_name/* FROM table_name
+    ORDER BY column_name DESC;
 
 #######===========#######
 ### AND, OR, NOT
 #######===========#######
 
 use AND if has to be TRUE at all condition
- > SELECT * FROM table_name
-   WHERE column_name="data_in_table" AND column_name2="data_in_table";
+ => SELECT * FROM table_name
+    WHERE column_name="data_in_table"
+    AND column_name2="data_in_table";
 use OR if has to be TRUE at any condition
- > SELECT * FROM table_name
-   WHERE column_name="data_in_table" OR column_name1=
-   "other_data_in_table";
+ => SELECT * FROM table_name
+    WHERE column_name="data_in_table"
+    OR column_name1 = "other_data_in_table";
 use NOT if want to exclude
- > SELECT * FROM table_name
-   WHERE NOT column_name="data_in_table"
+ => SELECT * FROM table_name
+    WHERE 
+    NOT column_name="data_in_table"
+
 all of it can be combined
- > SELECT * FROM Customers
-   WHERE Country='Germany' AND (City='Berlin' OR City='München');
+ => SELECT * FROM Customers
+    WHERE Country='Germany'
+    AND (City='Berlin'
+    OR City='München');
 
 #######===========#######
 ### IN
 #######===========#######
 
 IN is shorthand for OR command
- > SELECT * FROM table_name
-   WHERE column_name IN (column_value1, column_value2)
+ => SELECT * FROM table_name WHERE column_name
+    IN (column_value1, column_value2)
 
 #######===========#######
 ### BETWEEN
 #######===========#######
 
 BETWEEN to select in range
- > SELECT * FROM table_name
-   WHERE column_name BETWEEN 10 AND 30;
- > SELECT * FROM table_name
-   WHERE column_name BETWEEN "Alpha" AND "Zeta";
- > SELECT * FROM table_name
-   WHERE column_name BETWEEN '1996-07-01' AND '1996-07-31';
+ => SELECT * FROM table_name WHERE column_name
+    BETWEEN 10 AND 30;
+ => SELECT * FROM table_name WHERE column_name 
+    BETWEEN "Alpha" AND "Zeta";
+ => SELECT * FROM table_name WHERE column_name
+    BETWEEN '1996-07-01' AND '1996-07-31';
 
 #######===========#######
 ### GROUP BY
 #######===========#######
 
 GROUP BY to classify column, usually use aggregat
- > SELECT COUNT(column_name) FROM table_name
-   GROUP BY column_name;
- > SELECT Shippers.ShipperName, COUNT(Orders.OrderID)
-   AS NumberOfOrders FROM Orders LEFT JOIN Shippers ON
-   Orders.ShipperID = Shippers.ShipperID GROUP BY ShipperName;
+ => SELECT COUNT(column_name) FROM table_name
+    GROUP BY column_name;
+ => SELECT Shippers.ShipperName, COUNT(Orders.OrderID) AS NumberOfOrders
+    FROM Orders LEFT JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID
+    GROUP BY ShipperName;
 
 #######===========#######
 ### HAVING
 #######===========#######
 
 HAVING same like WHERE but it used aggregat command
- > SELECT COUNT(CustomerID), Country FROM Customers 
-   GROUP BY Country HAVING COUNT(CustomerID) > 5
-   ORDER BY COUNT(CustomerID) DESC;
- > SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders
-   FROM (Orders INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID)
-   GROUP BY LastName HAVING COUNT(Orders.OrderID) > 10;
+ => SELECT COUNT(CustomerID), Country FROM Customers GROUP BY Country
+    HAVING COUNT(CustomerID) > 5 ORDER BY COUNT(CustomerID) DESC;
+ => SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders
+    FROM (Orders INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID)
+    GROUP BY LastName
+    HAVING COUNT(Orders.OrderID) > 10;
 
 #######===========#######
 ### EXIST
 #######===========#######
 
 EXISTS to check if value are in column
- > SELECT column_name FROM table_name WHERE EXISTS
-   (SELECT column_name FROM table_name WHERE condition);
- > SELECT SupplierName FROM Suppliers WHERE EXISTS
-   (SELECT ProductName FROM Products WHERE Products.SupplierID
-   = Suppliers.supplierID AND Price = 22);
+ => SELECT column_name FROM table_name WHERE
+    EXISTS (SELECT column_name FROM table_name WHERE condition);
+ => SELECT SupplierName FROM Suppliers WHERE 
+    EXISTS (SELECT ProductName FROM Products WHERE Products.SupplierID
+    = Suppliers.supplierID AND Price = 22);
 
 #######===========#######
 ### ANY, ALL
 #######===========#######
 
 ANY to compare column and return TRUE if in a condition
- > SELECT column_name FROM table_name WHERE column_name =
-   ANY (SELECT column_name FROM table_name WHERE condition);
- > SELECT ProductName FROM Products WHERE ProductID = ANY
-   (SELECT ProductID FROM OrderDetails WHERE Quantity = 10);
+ => SELECT column_name FROM table_name WHERE column_name =
+    ANY (SELECT column_name FROM table_name WHERE condition);
+ => SELECT ProductName FROM Products WHERE ProductID = ANY
+    (SELECT ProductID FROM OrderDetails WHERE Quantity = 10);
 ALL to compare column and RETURN TRUE if all in a condition
+ => SELECT column_name FROM table_name WHERE column_name =
+    ALL (SELECT column_name FROM table_name WHERE condition);
 
         #######===========#######
         ###==== Catatan 6 ====###
@@ -254,11 +283,15 @@ ALL to compare column and RETURN TRUE if all in a condition
         #######===========#######
 
 AS for Aliases but only in that query
- > SELECT column_name AS new1;
- > SELECT a.column_name FROM table_name AS a;
+ => SELECT column_name AS new1;
+ => SELECT a.column_name FROM table_name AS a;
 
 UNION combine same column from two table
 use UNION ALL for undistinct value
- > SELECT column_name1 FROM table_name1
-   UNION
-   SELECT column_name2 FROM table_name2
+ => SELECT column_name1 FROM table_name1
+    UNION
+    SELECT column_name2 FROM table_name2
+ => SELECT City, Country FROM Customers WHERE Country='Germany'
+    UNION
+    SELECT City, Country FROM Suppliers WHERE Country='Germany'
+    ORDER BY City;
