@@ -14,3 +14,5 @@ SHOW DATABASES to load all DATABASES
 
 USE to load databases
  > USE databases_name;
+ 
+DELETE TABLE
