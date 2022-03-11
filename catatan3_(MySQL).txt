@@ -18,4 +18,4 @@ USE to load databases
 DESCRIBE to see table schema
  > DESCRIBE table_name;
  
-DELETE TABLE
+CHANGE TABLE
