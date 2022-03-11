@@ -3,6 +3,9 @@
         # SOURCE, SHOW DATABASES, USE
         #######===========#######
 
+open in cmd
+ > mysql -u root -p
+
 SOURCE to load file 
  > SOURCE c:\file_name.sql
 
