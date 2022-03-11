@@ -14,6 +14,8 @@ CREATE DATABASE to create new database
 
 SHOW DATABASES to load all DATABASES
  > SHOW DATABASES;
+SHOW TABLES to load all table in databases
+ > SHOW TABLES;
 
 USE to load databases
  > USE databases_name;
