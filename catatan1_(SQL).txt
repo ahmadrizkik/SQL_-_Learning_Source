@@ -1,27 +1,8 @@
+
         #######===========#######
         ###==== Catatan 1 ====###
-        # install sqlite3
+        # CREATE TABLE, RENAME
         #######===========#######
-
-# Cara menginstall sqlite
-Menginstall sqlite di windows dengan mendownload sqlite
-yang bagian 'Precompiled Binaries for Windows' di web sqlite.
-> Pindah ke sqlite di path C:\ buat folder nama sqlite
-
-view advanced system, open environment variables
-> add new path in system variables c:\sqlite
-this is to make command more simple in terminal
-
-
-        #######===========#######
-        ###==== Catatan 2 ====###
-        # CREATE DATABASE, CREATE, RENAME
-        #######===========#######
-
-database in sqlite made of table fill with rows and column 
-access using cmd with command
- > C:\Users\Rizky>sqlite3 (database_name.db)
-If theres no file with that name, it will make a new file
 
 make a new table with VARCHAR type, data type must input in the beginning
  > CREATE TABLE table_name(rowid, name VARCHAR(25), email VARCHAR(35));
@@ -37,7 +18,7 @@ Rename table
 
 
         #######===========#######
-        ###==== Catatan 3 ====###
+        ###==== Catatan 2 ====###
         # INSERT, UPDATE, DELETE
         #######===========#######
 
@@ -62,7 +43,7 @@ Delete table
 
 
         #######===========#######
-        ###==== Catatan 4 ====###
+        ###==== Catatan 3 ====###
         # SELECT
         #######===========#######
 
@@ -107,7 +88,7 @@ to select top of table, it can be combined with WHERE
  > SELET * FROM table_name LIMIT 3;
 
         #######===========#######
-        ###==== Catatan 5 ====###
+        ###==== Catatan 4 ====###
         # FROM
         #######===========#######
 
@@ -136,7 +117,7 @@ RIGHT JOIN for full table in right,
 FULL JOIN for join all table
 
         #######===========#######
-        ###==== Catatan 6 ====###
+        ###==== Catatan 5====###
         # WHERE
         #######===========#######
 
@@ -266,7 +247,7 @@ ANY to compare column and return TRUE if in a condition
 ALL to compare column and RETURN TRUE if all in a condition
 
         #######===========#######
-        ###==== Catatan 7 ====###
+        ###==== Catatan 6 ====###
         # AS, UNION
         #######===========#######
 
@@ -279,14 +260,3 @@ use UNION ALL for undistinct value
  > SELECT column_name1 FROM table_name1
    UNION
    SELECT column_name2 FROM table_name2
-
-
-        #######===========#######
-        ###==== LIST CMD =====###
-        #######===========#######
-
-.database   = check where database at
-.open       = open database
-.quit       = quit from sql3
-.schema     = table info (column_type)
-.table      = list table in database

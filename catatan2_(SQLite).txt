@@ -1,0 +1,29 @@
+        #######===========#######
+        ###==== Catatan 1 ====###
+        # install sqlite3
+        #######===========#######
+
+# Cara menginstall sqlite
+Menginstall sqlite di windows dengan mendownload sqlite
+yang bagian 'Precompiled Binaries for Windows' di web sqlite.
+> Pindah ke sqlite di path C:\ buat folder nama sqlite
+
+view advanced system, open environment variables
+> add new path in system variables c:\sqlite
+this is to make command more simple in terminal
+
+database in sqlite made of table fill with rows and column 
+access using cmd with command
+ > C:\Users\Rizky>sqlite3 (database_name.db)
+If theres no file with that name, it will make a new file
+
+
+        #######===========#######
+        ###==== LIST CMD =====###
+        #######===========#######
+
+.database   = check where database at
+.open       = open database
+.quit       = quit from sql3
+.schema     = table info (column_type)
+.table      = list table in database
