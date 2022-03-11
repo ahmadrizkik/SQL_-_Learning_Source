@@ -17,8 +17,5 @@ USE to load databases
 
 DESCRIBE to see table schema
  > DESCRIBE table_name;
-<<<<<<< HEAD
  
 CHANGE TABLE
-=======
->>>>>>> 485c157b70608033b536e10fdb35057d279aeeef
