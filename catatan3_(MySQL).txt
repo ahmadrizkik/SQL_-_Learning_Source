@@ -14,3 +14,6 @@ SHOW DATABASES to load all DATABASES
 
 USE to load databases
  > USE databases_name;
+
+DESCRIBE to see table schema
+ > DESCRIBE table_name;
