@@ -83,6 +83,13 @@ show only difference value
  => SELECT DISTINCT column_name/* FROM table_name;
 
 #######===========#######
+### LENGTH
+#######===========#######
+
+LENGTH bring back length of value
+ => SELECT LENGTH(column_name) FROM table_name;
+
+#######===========#######
 ### AGGREGAT
 #######===========#######
 
@@ -148,7 +155,7 @@ other WHERE operator =, <>, >=, <=
 
 using LIKE for more detail conditional
  => SELECT column_name/* FROM table_name WHERE column_name LIKE
-    "&keyword&"
+    "&keyword&";
     /////////////////////////
     &     = is to determined if theres a character before or after keyword
       exa = "%keyword", "keyword&", "%keyword%".
