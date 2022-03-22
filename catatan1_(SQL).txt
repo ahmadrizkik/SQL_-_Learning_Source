@@ -6,6 +6,9 @@
 
 new table
  => CREATE TABLE table_name(rowid, name VARCHAR(25), email VARCHAR(35));
+    /////////////////////////
+    in MySQL
+    => CREATE TABLE IF NOT EXISTS
 
 # data type
 set column into key
@@ -139,6 +142,12 @@ INNER JOIN to join same column_value
     INNER JOIN table_name1 ON table_name.column_name = table_name1.column_name1
  => SELECT Customers.CustomerName, Orders.OrderDate FROM Customers
     INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+
+Join three tables
+ => SELECT Orders.OrderID, Customers.CustomerName, Shippers.ShipperName
+    FROM ((Orders
+    INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
+    INNER JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID);
 
         #######===========#######
         ###==== Catatan 5====###
